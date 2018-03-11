@@ -48,6 +48,8 @@ module.exports = MyTTTPlayer
 
 Import `tiktaktoe` via `yarn add git https://github.com/abramsba/tiktaktoe.git`. Afterwards you can pass your own bot and test it against AI. 
 
+### Your Own Robot
+
 ```js
 // yarn add git https://github.com/abramsba/tiktaktoe.git
 const ttt = require('tiktaktoe')
@@ -66,6 +68,13 @@ Each Step:
   2 |     |     |     |     |     |
 */
 ```
+
+### Avaliable AI
+
+Two robots are exported to be used for testing purposes
+
+* Create `RandomAI` with `ttt.ai.random()`
+* Create `DecentAI` with `ttt.ai.decent()`
 
 ## Rules
 
