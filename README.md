@@ -44,6 +44,29 @@ class MyTTTPlayer {
 module.exports = MyTTTPlayer
 ```
 
+## Testing
+
+Import `tiktaktoe` via `yarn add git https://github.com/abramsba/tiktaktoe.git`. Afterwards you can pass your own bot and test it against AI. 
+
+```js
+// yarn add git https://github.com/abramsba/tiktaktoe.git
+const ttt = require('tiktaktoe')
+const myrobot = require('./myrobotai.js')
+ttt.recap(ttt.play(myrobot))
+/*
+Steps:  5
+Victor:  X
+X:  MyRobotAI
+O:  RandomAI
+Each Step:
+      012
+      ___
+  0 | X   | X   | X X | X X | XXX |
+  1 |     |  O  |  O  |  OO |  OO |
+  2 |     |     |     |     |     |
+*/
+```
+
 ## Rules
 
 1. First robot which places three of their symbols in a line wins.
