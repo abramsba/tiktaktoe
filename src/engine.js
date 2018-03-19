@@ -36,7 +36,7 @@ class Engine {
             if ( owin )
                 return { step: step, victory: "O", summary: summary, x: this.x.name(), o: this.o.name() }
 
-            if ( step == 9 )
+            if ( step >= 9 )
                 return { step: step, victory: " ", summary: summary, x: this.x.name(), o: this.o.name() }
         }
     }
