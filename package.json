@@ -6,7 +6,7 @@
   "author": "Bryan Abrams <cmonbryan@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "aitest": "node test.js"
+    "playback": "node test.js"
   },
   "dependencies": {}
 }

@@ -66,6 +66,24 @@ async function playbackRecap(recap, callback) {
         await sleep(1000)
         if ( i != (recap.summary.length-1) )
             console.log('\033c')
+        else if (recap.victory === "X") {
+            await sleep(2000)
+            console.log("🏆  goes to ❌ .")
+            await sleep(5000)
+            console.log('\033c')
+        }
+        else if (recap.victory === "O") {
+            await sleep(2000)
+            console.log("🏆  goes to ⚪ .")
+            await sleep(5000)
+            console.log('\033c')
+        }
+        else {
+            await sleep(2000)
+            console.log("🛡  nobody wins.")
+            await sleep(5000)
+            console.log('\033c')
+        }
     }
     logRecap(recap)
 }
