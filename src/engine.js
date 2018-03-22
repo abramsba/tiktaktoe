@@ -25,6 +25,9 @@ class Engine {
             if ( xwin )
                 return { step: step, victory: "X", summary: summary, x: this.x.name(), o: this.o.name() }
 
+            if ( step >= 9 )
+                return { step: step, victory: " ", summary: summary, x: this.x.name(), o: this.o.name() }
+
             var owin = undefined
             try {
                 owin = this.turn_o(++step)

@@ -1,12 +1,12 @@
 {
   "name": "tiktaktoe",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Game played by modules",
   "main": "index.js",
   "author": "Bryan Abrams <cmonbryan@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "aitest": "node run.js"
+    "aitest": "node test.js"
   },
   "dependencies": {}
 }

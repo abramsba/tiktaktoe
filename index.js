@@ -1,4 +1,7 @@
 
-module.exports = require('./src/interface.js')
+module.exports = {
+    game: require('./src/interface.js'),
+    format: require('./src/format.js')
+}
 
 
