@@ -38,8 +38,8 @@ class DecentAI {
         else if ( step == 5 ) {
             let m0 = this.moves[0]
             let m1 = this.moves[1]
-            let diffx = m0[0] - m1[0]
-            let diffy = m0[1] - m1[1]
+            let diffx = m0[1] - m1[1]
+            let diffy = m0[0] - m1[0]
             if ( diffx != 0 ) {
                 let chr1 = board[1][m0[1]]
                 let chr2 = board[1][m1[1]]
@@ -53,7 +53,7 @@ class DecentAI {
                 }
             }
             else if ( diffy != 0 ) {
-                let chr = board[m0[0]][1]
+                let chr = board[m0[1]][1]
                 let mid = board[1][1]
                 if ( chr === " " ) {
                     this.moves.push([m0[0],1])
@@ -191,7 +191,7 @@ class DecentAI {
 
 
     name() {
-        return "DecentAI"
+        return "Not the worst ever AI"
     }
 }
 
