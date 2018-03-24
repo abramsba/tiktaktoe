@@ -62,24 +62,25 @@ async function playbackRecap(recap, callback) {
     for(var i = 0; i < recap.summary.length; i++) {
         let s = recap.summary[i]
         console.log("🔃  Turn: ", i+1)
+        if ( i % 2 == 0 )
+            console.log("🕹️  "+recap.o+" thinking...")
+        else
+            console.log("🕹️  "+recap.x+" thinking...")
         console.log(formatBoard(s))
         await sleep(1000)
         if ( i != (recap.summary.length-1) )
             console.log('\033c')
         else if (recap.victory === "X") {
-            await sleep(2000)
             console.log("🏆  goes to ❌ .")
             await sleep(5000)
             console.log('\033c')
         }
         else if (recap.victory === "O") {
-            await sleep(2000)
             console.log("🏆  goes to ⚪ .")
             await sleep(5000)
             console.log('\033c')
         }
         else {
-            await sleep(2000)
             console.log("🛡  nobody wins.")
             await sleep(5000)
             console.log('\033c')

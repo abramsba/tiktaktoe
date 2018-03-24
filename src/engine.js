@@ -47,8 +47,8 @@ class Engine {
     turn_x(step) {
         let xd = this.x.decide("X", step, this.copyBoard())
         if ( xd ) {
-            if ( this.board[xd[0]][xd[1]] === " " )
-                this.board[xd[0]][xd[1]] = "X"
+            if ( this.board[xd[1]][xd[0]] === " " )
+                this.board[xd[1]][xd[0]] = "X"
             else
                 throw new Error('Invalid position supplied')
         }
@@ -58,8 +58,8 @@ class Engine {
     turn_o(step) {
         let od = this.o.decide("O", step, this.copyBoard())
         if ( od )
-            if ( this.board[od[0]][od[1]] === " " )
-                this.board[od[0]][od[1]] = "O"
+            if ( this.board[od[1]][od[0]] === " " )
+                this.board[od[1]][od[0]] = "O"
             else
                 throw 'Invalid position supplised'
         return this.check_o()
