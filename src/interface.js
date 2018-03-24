@@ -1,6 +1,5 @@
 
 const RandomAI = require('./randomai.js')
-const BadAI = require('./badai.js')
 const Engine = require('./engine.js')
 
 /*
@@ -19,9 +18,6 @@ function play() {
 
 module.exports = {
 	play: play,
-    ai: {
-        random: () => new RandomAI(),
-        bad: () => new BadAI()
-    }
+    testai: () => new RandomAI()
 }
 

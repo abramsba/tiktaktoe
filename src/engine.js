@@ -50,7 +50,7 @@ class Engine {
             if ( this.board[xd[1]][xd[0]] === " " )
                 this.board[xd[1]][xd[0]] = "X"
             else
-                throw new Error('Invalid position supplied')
+                throw new Error('Invalid position supplied: '+xd)
         }
         return this.check_x()
     }

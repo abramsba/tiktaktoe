@@ -4,8 +4,8 @@ class RandomAI {
         while(true) {
             let x = Math.floor(Math.random()*3)
             let y = Math.floor(Math.random()*3)
-            let chr = board[x][y]
-            console.log(x, y)
+            let chr = board[y][x]
+            //console.log(x, y)
             if ( chr === " " )
                 return [x, y]
         }
