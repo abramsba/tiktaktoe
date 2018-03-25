@@ -1,84 +1,114 @@
 
-# Tic Tak Toe
+# tic-tak-toe
 
-Game engine for playing tic-tak-toe with AI 
+Game engine for playing tic-tac-toe, or in Nederlands "boter, kaas, en eieren", with artifical intelligence. 
 
-I'm aware I spelled tic-tac-toe wrong. 
+## Requirements
 
-## Usage
+* `node`
+* `yarn`
+* `git`
+* text editor
+* terminal
+    * Windows: Git bash included with git install https://git-scm.com/
+    * Osx: Default terminal works fine, iTerm2 is avaliable https://www.iterm2.com/
+    * Sublime: OSX/Linux users can use https://packagecontrol.io/packages/TerminalView
 
-You need to create your own class which implements the following two functions:
+## Installing engine
 
-### `decide(symbol, step, board)`
+Players can run the engine locally by including this repository as a development dependency via yarn.
 
-* `symbol`: contains either `"X"` or `"O"`.
-* `step`: which tick the engine needs a decision for
-* `board`: A 2D array which contains the current state of the board
+`yarn add git https://github.com/abramsba/tiktaktoe.git --dev`
 
-This function is called by the engine to figure out on which position of the map should the symbol be set. The developer needs to read `board` to determine what their next move is. 
+## How it works
 
-### `name()`
+The engine will create a new game and alternate between allowing player X and player O to make decisions. In order to mark a position on the board, participants will have to provide the implementation of an interface which the engine uses to change the game state. Players are not creating the game loop. When it is the player's turn, the engine will call the interface implementation provided by the player to make the next move. 
 
-This function returns the name of the AI that is playing
+### Live demo
 
-## Example
+The engine has a test script which plays an animation of two players playing making random decisions.
 
-Below is an example of `index.js` which exports your robot class.
+```
+git clone https://github.com/abramsba/tiktaktoe.git && cd tiktaktoe
+yarn playback
+```
+
+![https://i.imgur.com/mUfI6cR.png](https://i.imgur.com/mUfI6cR.png)
+
+
+### Creating new AI
+
+Participants can create a javascript class which must implement the following two function:
 
 ```js
-class MyTTTPlayer {
+/*
+ * symbol = 'X' or 'O'
+ * step = 1, 2, 3...9
+ * board = [ [" ", " ", " "]
+ *           [" ", " ", " "]
+ *           [" ", " ", " "] ]
+ *   The first index of board accesses the row (y value)
+ *   The second index accesses the col (x value)
+ */
+decide(symbol, step, board) {
+  let xpos = ...x position logic...
+  let ypos = ...y position logic...
+  let getboardpos = board[ypos][xpos]
+  if ( getboardpos == ' ' )
+  return [xpos, ypos]
+}
+```
+
+The engine will tell the player which symbol they are, what step they are on, and show them the current state of the board. Players can use this information to determine the next position to pick. When the opponent player makes a decision `decide` will be called again. This repeats until no positions are avaliable or one of the players have created a straight line. 
+
+```js
+name() { 
+  return "My Name"
+}
+```
+
+This function is used to identify the AI for formatting purposes.
+
+#### Example
+
+This is the example AI class provided with the engine. 
+
+```js
+class RandomAI {
+    // Called when engine wants AI to make a decision
     decide(symbol, step, board) {
-        console.log("Symbol: ", symbol) // "X"
-        console.log("Step:   ", step)   // 1
-        console.log("Board:  ", board) 
-        // [[" ", " ", " "],
-        //  [" ", " ", " "],
-        //  [" ", " ", " "]]
-        return [0,0]
+        // Keep looping until the next empty position is found
+        while(true) {
+            // Random (x, y) value
+            let x = Math.floor(Math.random()*3)
+            let y = Math.floor(Math.random()*3)
+            // if the position is ' ', empty
+            let chr = board[y][x]
+            if ( chr === " " )
+                return [x, y] // return [xposition, yposition]
+        }
     }
     name() {
-        return "My Tic-Tak-Toe Player"
+        return "RandomAI" // my name
     }
 }
 
-module.exports = MyTTTPlayer
+module.exports = RandomAI
 ```
 
-## Testing
+### Testing 
 
-Import `tiktaktoe` via `yarn add git https://github.com/abramsba/tiktaktoe.git`. Afterwards you can pass your own bot and test it against AI. 
-
-### Your Own Robot
+Testing is as easy as writing a script and the engine each player uses is the same that is used during the live game. 
 
 ```js
-// yarn add git https://github.com/abramsba/tiktaktoe.git
-const ttt = require('tiktaktoe')
-const myrobot = require('./myrobotai.js')
-ttt.recap(ttt.play(myrobot))
-/*
-Steps:  5
-Victor:  X
-X:  MyRobotAI
-O:  RandomAI
-Each Step:
-      012
-      ___
-  0 | X   | X   | X X | X X | XXX |
-  1 |     |  O  |  O  |  OO |  OO |
-  2 |     |     |     |     |     |
-*/
+const ttt  = require('tiktaktoe')
+const myai = require('./index.js')
+let game_as_x = ttt.game.run(new myai(), ttt.game.testai())
+let game_as_y = ttt.game.run(ttt.game.testai(), new myai())
+ttt.format.recap(game_as_x)
+ttt.format.recap(game_as_y)
 ```
 
-### Avaliable AI
 
-Two robots are exported to be used for testing purposes
-
-* Create `RandomAI` with `ttt.ai.random()`
-* Create `DecentAI` with `ttt.ai.decent()`
-
-## Rules
-
-1. First robot which places three of their symbols in a line wins.
-2. If the robots return an invalid position than the game is over
 
 
