@@ -1,5 +1,6 @@
 
 const RandomAI = require('./randomai.js')
+const ScrollAI = require('./scrollai.js')
 const Engine = require('./engine.js')
 
 /*
@@ -18,6 +19,7 @@ function play() {
 
 module.exports = {
 	play: play,
-    testai: () => new RandomAI()
+    testai: () => new RandomAI(),
+    scrollai: () => new ScrollAI()
 }
 

@@ -1,6 +1,6 @@
 {
   "name": "tiktaktoe",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Game played by modules",
   "main": "index.js",
   "author": "Bryan Abrams <cmonbryan@gmail.com>",
