@@ -44,8 +44,17 @@ class Engine {
         }
     }
 
+    input_check(input) {
+        if(!Array.isArray(input)) return false;
+        if(input.length != 2) return false;
+        if(input[0] < 0 || input[0] > 2) return false;
+        if(input[1] < 0 || input[1] > 2) return false;
+        return true;
+    }
+
     turn_x(step) {
         let xd = this.x.decide("X", step, this.copyBoard())
+        if(!this.input_check(xd)) throw new Error(this.x.name() + '! invalid input: ' + xd)
         if ( xd ) {
             if ( this.board[xd[1]][xd[0]] === " " )
                 this.board[xd[1]][xd[0]] = "X"

@@ -6,4 +6,3 @@ let game = ttt.game.play(
     ttt.game.testai()
 );
 ttt.format.playback(game)
-

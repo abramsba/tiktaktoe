@@ -40,7 +40,11 @@ function logRecap(recap) {
     let summary_string = formatSummary(recap.summary)
     let l1 = summary_string.split("\n")[0]
     let border = new Array(l1.length+5).join("░")
-    if ( recap.victory === " " )
+    if ( recap.error ) {
+        console.log("‼️  Error ‼️ ")
+        console.log(recap.error)
+    }
+    else if ( recap.victory === " " )
         console.log("🛡  Draw")
     else if ( recap.victory === 'X' )
         console.log("🏆  Victory ❌  [" + recap.x + "]")

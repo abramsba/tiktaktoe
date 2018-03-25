@@ -9,10 +9,11 @@ class ScrollAI {
     nextpos(i,board) {
         let p = this.intpos(i)
         let c = board[p[1]][p[0]]
-        console.log(i, p)
         if ( c == ' ' )
             return i
-        this.nextpos(i+1, board)
+        if ( i == 9 )
+            i = 0
+        return this.nextpos(i+1, board)
     }
     intpos(i) {
         switch(i) {
@@ -22,8 +23,8 @@ class ScrollAI {
             case 4: return [0,1]
             case 5: return [1,1]
             case 6: return [2,1]
-            case 7: return [1,2]
-            case 8: return [0,2]
+            case 7: return [0,2]
+            case 8: return [1,2]
             case 9: return [2,2]
         }
     }
