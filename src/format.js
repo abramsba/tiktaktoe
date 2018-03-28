@@ -1,18 +1,14 @@
 
 function formatBoard(input) {
-   input = input.replace(/X/g, "❌").replace(/O/g, "⚪")
+   //input = input.replace(/X/g, "X").replace(/O/g, "O")
    let splits = input.split("\n").map(s => s.split(""))
-   let grid = "      ┬      ┬      \n" +
-              "  1   │  2   │  3   \n" +
-              "      │      │      \n" +
-              "├─────╬──────╬─────┤\n" +
-              "      │      │      \n" +
-              "  4   │  5   │  6   \n" +
-              "      │      │      \n" +
-              "├─────╬──────╬─────┤\n" +
-              "      │      │      \n" +
-              "  7   │  8   │  9   \n" +
-              "      ┴      ┴      "
+   let grid = "    ┬   ┬    \n" +
+              "  1 │ 2 │ 3  \n" +
+              "├───╬───╬───┤\n" +
+              "  4 │ 5 │ 6  \n" +
+              "├───╬───╬───┤\n" +
+              "  7 │ 8 │ 9  \n" +
+              "    ┴   ┴    "
     return grid.replace(/1/, splits[0][0])
                .replace(/2/, splits[0][1])
                .replace(/3/, splits[0][2])
@@ -22,11 +18,13 @@ function formatBoard(input) {
                .replace(/7/, splits[2][0])
                .replace(/8/, splits[2][1])
                .replace(/9/, splits[2][2])
+               .replace(/X/g, "\x1b[31mX\x1b[0m")
+               .replace(/O/g, "\x1b[36mO\x1b[0m")
 }
 
 function formatSummary(summary) {
     let res = summary.map(formatBoard)
-    var lines = [[], [], [], [], [], [], [], [], [], [], []]
+    var lines = [[], [], [], [], [], [], []]
 
     res.forEach((s, i) => {
         let splits = s.split("\n")
